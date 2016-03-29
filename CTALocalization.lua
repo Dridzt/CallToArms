@@ -495,7 +495,7 @@ CTA_CLEAR_OLD_MSGS	 		= "Clearing old messages";
 --]]
 
 CTA_TRIGGER_LIST = {
-	["LFM"] = 	{ "lf ", "lf%d*m", "looking for more", "need %d* more", "need ", " spot", " and go" },
+	["LFM"] = 	{ "lf ", "lf%d*m", "looking for more", "need %d* more", "need ", " spot", " and go", " and gtg", " then gtg", " then g2g" },
 	
 	["LFG"] = {	"lfg", "looking for group",  },
 	
@@ -517,7 +517,7 @@ CTA_TRIGGER_LIST = {
 	
 	["SPAM"] = 	{ "channel", "lol", "chuck", "norris", "lmao", "lmfao", "rofl", 
 				"guild", "wts", "wtb", "stfu", "ignore", "enchant", "noob", 
-				"nub", "n00b", "vin", "recruit", "trogdoor"
+				"nub", "n00b", "vin", "recruit", "trogdoor", "\.com",
 	},
 	
 	["GOAL"] = {
@@ -525,10 +525,10 @@ CTA_TRIGGER_LIST = {
 		["ALTERAC"] = 	{ " alterac", "av ", },
 		["ARATHI"] = 	{" arathi", "ab " },
 		["BLACKFATHOM"] = { " blackfa", "mtiefen? ", "bfd",},
-		["BLACKROCKDEPTHS"] = { " blackrock", "brd", "imperator", "windsor", "emperor", },
+		["BLACKROCKDEPTHS"] = { " blackrock", "brd", "imperator", "windsor", "emperor", "jailbreak", "emp ", "7d", },
 		["BLACKWING"] = { "bwl", "blackwing", },
 		["DEADMINES"] = { "dead ?mines", "death ?mines", "dm", "vc", "vancleef", },
-		["DIREMAUL"] = 	{ "dm", "dm .*north", "dm .*west", "dm .*est", "dm .*east", " dire ?maul ", "tribute", },
+		["DIREMAUL"] = 	{ "dm", "dm .*north", "dm .*west", "dm .*est", "dm .*east", " dire ?maul ", "tribute", "dm\-[we]+", "dm[we]+", },
 		["GNOMEREGAN"] ={ "gnomeregan", " gnome", "gg", },
 		["LBRS"] = 		{ "lower .*spire", "lower .*blackrock", "lbrs", },
 		["MARAUDON"] = 	{ "mau?rau?don", "mara", "maar", "princess", },
@@ -542,7 +542,7 @@ CTA_TRIGGER_LIST = {
 		["SHADOWFANG"] ={ "shadowfang", "sfk", },
 		["STOCKADE"] = 	{ "stockade", "dextren", "kam", "targor", "basil", },
 		["STRATHOLME"] ={ "stratholme", " strath", " starth ", " baron", "bastion", " strat ", " ud", },
-		["SUNKENTEMPLE"] = { " st ?", "sunken temple", "temple", },
+		["SUNKENTEMPLE"] = { " st[^roa] ?", "sunk", "templ", },
 		["UBRS"] = 		{ "upper *.spire", "upper *.blackrock", "ubrs", "urbs", },
 		["ULDAMAN"] = 	{ " ulda", "uldaman", "uld", },
 		["WAILINGCAVES"] = { "wailing cave", },

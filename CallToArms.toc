@@ -1,7 +1,7 @@
 ## Interface: 11200
 ## Title: CallToArms
 ## DefaultState: Enabled
-## Notes: LFG AddOn (R12)
+## Notes: LFG AddOn (R12.2)
 ## LoadOnDemand: 0
 ## SavedVariables: CTA_SavedVariables
 CallToArms.xml
