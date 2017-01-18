@@ -1094,7 +1094,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
       </OnLeave>
       <OnLoad>
         CTA_MinimapIconBgTexture:SetVertexColor( 0.5, 0.25, 0.25 );
-        CTA_UpdateMinimapIcon();
+        --CTA_UpdateMinimapIcon();
         this:Show();
       </OnLoad>
       <OnEvent>
