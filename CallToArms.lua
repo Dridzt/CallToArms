@@ -338,10 +338,10 @@ function CTA_SlashHandler(com)
   end
 
   if (com == CTA_TOGGLE_MINIMAP) then
-    if (CTA_MinimapIcon:IsVisible()) then
-      CTA_MinimapIcon:Hide();
+    if (CTA_MinimapButton:IsVisible()) then
+      CTA_MinimapButton:Hide();
     else
-      CTA_MinimapIcon:Show();
+      CTA_MinimapButton:Show();
     end
     return;
   end
@@ -1575,10 +1575,10 @@ function CTA_UpdateResults()
 
 
   if (groupListLength ~= 0) then
-    CTA_MinimapIconTextLabel:SetText(groupListLength);
-    CTA_MinimapIconTextLabel:Show();
+    CTA_MinimapButtonTextLabel:SetText(groupListLength);
+    CTA_MinimapButtonTextLabel:Show();
   else
-    CTA_MinimapIconTextLabel:Hide();
+    CTA_MinimapButtonTextLabel:Hide();
   end
 
   if (groupListLength ~= 1) then
@@ -3298,11 +3298,11 @@ local quadrants = {
   ["LEFT"] = {"LEFT", "RIGHT", 0, 0},
 }
 function CTA_UpdateMinimapIcon()
-  CTA_MinimapIcon:SetPoint("TOPLEFT", "Minimap", "TOPLEFT",
+  CTA_MinimapButton:SetPoint("TOPLEFT", "Minimap", "TOPLEFT",
   55 -((CTA_SavedVariables.MinimapRadiusOffset) * cos(CTA_SavedVariables.MinimapArcOffset)),
   ((CTA_SavedVariables.MinimapRadiusOffset) * sin(CTA_SavedVariables.MinimapArcOffset)) -55
   );
-  local icon_x, icon_y = CTA_MinimapIcon:GetCenter()
+  local icon_x, icon_y = CTA_MinimapButton:GetCenter()
   local screen_x, screen_y = GetScreenWidth(), GetScreenHeight()
   local quadrant
   if icon_y > screen_y/2 then
@@ -3320,7 +3320,7 @@ function CTA_UpdateMinimapIcon()
     quadrant = quadrant .. ""
   end
   local point, to, x, y = unpack(quadrants[quadrant])
-  CTA_MinimapMessageFrame:SetPoint(point, CTA_MinimapIcon, to, x, y)
+  CTA_MinimapMessageFrame:SetPoint(point, CTA_MinimapButton, to, x, y)
   --[[CTA_MinimapMessageFrame:SetPoint( "TOPRIGHT", "Minimap", "TOPRIGHT",
 		( 0 - ( ( CTA_SavedVariables.MinimapMsgRadiusOffset ) * cos( CTA_SavedVariables.MinimapMsgArcOffset ) ) ) - 55,
 		( ( CTA_SavedVariables.MinimapMsgRadiusOffset ) * sin (CTA_SavedVariables.MinimapMsgArcOffset ) ) - 55
