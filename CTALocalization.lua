@@ -270,7 +270,7 @@ CTA_GenTooltips = {
     tooltip1 = "Stop Hosting",
     tooltip2 = "Declares you are not anymore hosting a group and leaves this screen"
   },
-  CTA_MinimapIcon =
+  CTA_MinimapButton =
   {
     tooltip1 = "Call To Arms",
     tooltip2 = "Click to open",

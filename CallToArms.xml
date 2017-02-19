@@ -974,7 +974,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 		Minimap Icon
 	-->
 
-  <Button name="CTA_MinimapIcon" enableMouse="true" frameStrata="LOW" toplevel="true" parent="Minimap">
+  <Button name="CTA_MinimapButton" enableMouse="true" frameStrata="LOW" toplevel="true" parent="Minimap">
     <Size>
       <AbsDimension x="33" y="33"/>
     </Size>
@@ -1093,7 +1093,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
         GameTooltip:Hide();
       </OnLeave>
       <OnLoad>
-        CTA_MinimapIconBgTexture:SetVertexColor( 0.5, 0.25, 0.25 );
+        CTA_MinimapButtonBgTexture:SetVertexColor( 0.5, 0.25, 0.25 );
         --CTA_UpdateMinimapIcon();
         this:Show();
       </OnLoad>
