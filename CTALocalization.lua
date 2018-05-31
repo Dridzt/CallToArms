@@ -270,7 +270,7 @@ CTA_GenTooltips = {
     tooltip1 = "Stop Hosting",
     tooltip2 = "Declares you are not anymore hosting a group and leaves this screen"
   },
-  CTA_MinimapButton =
+  CTA_MinimapIcon =
   {
     tooltip1 = "Call To Arms",
     tooltip2 = "Click to open",
@@ -554,7 +554,7 @@ CTA_TRIGGER_LIST = {
     ["BLACKROCKDEPTHS"] = { " blackrock", "brd", "imperator", "windsor", "emperor", "jailbreak", "emp ", "7d", "vault", },
     ["BLACKWING"] = { "bwl", "blackwing", },
     ["DEADMINES"] = { "dead ?mines", "death ?mines", "dm", "vc", "vancleef", },
-    ["DIREMAUL"] = { "dm", "dm .*north", "dm .*west", "dm .*est", "dm .*east", " dire ?maul ", "tribute", "dm\-[we]+", "dm[we]+", "dm [we]+", "dm\:[we]+", },
+    ["DIREMAUL"] = { "dm", "dm .*north", "dm .*west", "dm .*est", "dm .*east", " dire ?maul ", "tribute", "dm\-[went]+", "dm[went]+", "dm [went]+", "dm\:[went]+", "dmt", },
     ["GNOMEREGAN"] = { "gnomeregan", " gnome", "gg", },
     ["LBRS"] = { "lower .*spire", "lower .*blackrock", "lbrs", },
     ["MARAUDON"] = { "mau?rau?don", "mara", "maar", "princess", },

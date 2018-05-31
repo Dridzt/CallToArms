@@ -338,10 +338,10 @@ function CTA_SlashHandler(com)
   end
 
   if (com == CTA_TOGGLE_MINIMAP) then
-    if (CTA_MinimapButton:IsVisible()) then
-      CTA_MinimapButton:Hide();
+    if (CTA_MinimapIcon:IsVisible()) then
+      CTA_MinimapIcon:Hide();
     else
-      CTA_MinimapButton:Show();
+      CTA_MinimapIcon:Show();
     end
     return;
   end
@@ -470,9 +470,9 @@ function CTA_OnUpdate(arg1)
           CTA_IconMsg(CTA_ANNOUNCED_LFM);
           CTA_Println(CTA_ANNOUNCED_LFM_EXT);
         elseif (CTA_LGMPrefixLabel:GetText() and CTA_LFGDescriptionEditBox:GetText() ~= "") then
-          CTA_SendChatMessage(CTA_LFGDescriptionEditBox:GetText() .. CTA_LGMPrefixLabel:GetText(), "CHANNEL", CTA_CHANNEL_ANNOUNCE);
+          CTA_SendChatMessage(CTA_LGMPrefixLabel:GetText() .. CTA_LFGDescriptionEditBox:GetText(), "CHANNEL", CTA_CHANNEL_ANNOUNCE);
           -- CTA_AutoAnnounce );
-          CTA_LogMsg("Sent to lfg channel: " .. CTA_LFGDescriptionEditBox:GetText() .. CTA_LGMPrefixLabel:GetText());
+          CTA_LogMsg("Sent to lfg channel: " .. CTA_LGMPrefixLabel:GetText() .. CTA_LFGDescriptionEditBox:GetText());
           CTA_AnnounceTimer = 300;
           PlaySound("TellMessage");
           CTA_IconMsg(CTA_ANNOUNCED_LFG);
@@ -770,8 +770,6 @@ function CTA_OnEvent(event)
 
     CTA_MinimapMessageFrame:AddMessage(CTA_CALL_TO_ARMS, 1, 0.85, 0);
     CTA_LogMsg(CTA_CALL_TO_ARMS);
-    -- CTA_MinimapMessageFrame2:AddMessage( CTA_CALL_TO_ARMS_LOADED, 1, 1, 1 );
-    -- CTA_Println( CTA_CALL_TO_ARMS_LOADED );
   end
 
 
@@ -1022,35 +1020,6 @@ function CTA_OnEvent(event)
       CTA_SavedVariables.timeLastMsgAdded = time();
       CTA_PollApplyFilters = 1;
 
-      --[[ R11B3 moved to CTA_ApplyFiltersToGroupList()
-			-- B8
-			local info = ChatTypeInfo[ "CHANNEL"..arg8 ];
-			local r, g, b = 0.8, 0.8, 0.8;
-			if( info ) then
-				r = info.r;
-				g = info.g;
-				b = info.b;
-			end
-
-			if( CTA_SavedVariables.showFilteredChat ) then
-				if( entry.who and entry.who.level ~= 0 ) then
-					DEFAULT_CHAT_FRAME:AddMessage( "[LFG][|cff".. ( CTA_ClassColors[entry.who.class] or "ffffff" ).."|Hplayer:"..author.."|h"..author.. ", "..entry.who.level.." " .. entry.who.class .. "|h|r]:|c"..mCol..msg .. "|r", r, g, b );
-				else
-					DEFAULT_CHAT_FRAME:AddMessage( "[LFG][|cffdddddd|Hplayer:"..author.."|h"..author.. "|h|r]:|c"..mCol..msg .. "|r", r, g, b );
-				end
-			end
-
-			-- R10: Show new messages in minimap icon text
-			if( CTA_SavedVariables.showOnMinimap ) then
-				--R11: return to R5 features
-				-- B8: improved
-				if( entry.who and entry.who.level ~= 0 ) then
-					CTA_MinimapMessageFrame:AddMessage( "|cff".. ( CTA_ClassColors[entry.who.class] or "ffffff" ).."|Hplayer:"..author.."|h"..author.. ", "..entry.who.level.." " .. entry.who.class .. "|h|r: "..msg, r, g, b );
-				else
-					CTA_MinimapMessageFrame:AddMessage( "|cffdddddd|Hplayer:"..author.."|h"..author.. "|h|r: "..msg, r, g, b );
-				end
-			end	
-			--]]
     end
   end
 
@@ -1366,7 +1335,6 @@ function CTA_ApplyFiltersToGroupList()
   local playerMinLevel = CTA_UI.getNumber(CTA_PlayerMinLevelEditBox, 0, 1, 60);
   local playerMaxLevel = CTA_UI.getNumber(CTA_PlayerMaxLevelEditBox, 60, 1, 60);
 
-
   CTA_RequestInviteButton:Disable();
   CTA_ResultsListOffset = 0;
   CTA_SelectedResultListItem = 0;
@@ -1407,20 +1375,6 @@ function CTA_ApplyFiltersToGroupList()
         dmn = 999;
       end
 
-      --[[
-			playerClass = CTA_PlayerClassDropDownText:GetText() or CTA_ANY_CLASS;
-			if( strlen(CTA_PlayerMinLevelEditBox:GetText()) == 0 ) then
-				playerMinLevel = 1;
-			else
-				playerMinLevel = tonumber( CTA_PlayerMinLevelEditBox:GetText() );
-			end
-			if( strlen(CTA_PlayerMaxLevelEditBox:GetText()) == 0 ) then
-				playerMaxLevel = 60;
-			else
-				playerMaxLevel = tonumber( CTA_PlayerMaxLevelEditBox:GetText() );
-			end
-			--]]
-
       if (data.ctaType == "A") then
 
         if (dmn > 2) then
@@ -1430,13 +1384,6 @@ function CTA_ApplyFiltersToGroupList()
           i = i - 1;
         end
 
-        -- if( ok and showClasses > 0 and CTA_CheckClasses( data.classes, showClasses ) == 0 ) then ok = nil; end
-        -- if( ok and showEmpty == 0 and data.size <= 1 ) then ok = nil; end
-        -- if( ok and showFull == 0 and data.size == data.maxSize ) then ok = nil; end
-        -- if( ok and showPVP == 0 and data.pvtype == CTA_RAID_TYPE_PVP ) then ok = nil; end
-        -- if( ok and showPVE == 0 and data.pvtype == CTA_RAID_TYPE_PVE ) then ok = nil; end
-        -- if( ok and showProtected == 0 and CTA_MyRaidPassword ) then ok = nil; end
-        -- if( ok and showMinLevel < data.minLevel ) then ok = nil; end
         if (CTA_SearchDropDownText:GetText() == CTA_SHOW_PLAYERS_ONLY) then ok = nil; end
 
       elseif (data.ctaType == "B") then
@@ -1575,10 +1522,10 @@ function CTA_UpdateResults()
 
 
   if (groupListLength ~= 0) then
-    CTA_MinimapButtonTextLabel:SetText(groupListLength);
-    CTA_MinimapButtonTextLabel:Show();
+    CTA_MinimapIconTextLabel:SetText(groupListLength);
+    CTA_MinimapIconTextLabel:Show();
   else
-    CTA_MinimapButtonTextLabel:Hide();
+    CTA_MinimapIconTextLabel:Hide();
   end
 
   if (groupListLength ~= 1) then
@@ -3298,11 +3245,11 @@ local quadrants = {
   ["LEFT"] = {"LEFT", "RIGHT", 0, 0},
 }
 function CTA_UpdateMinimapIcon()
-  CTA_MinimapButton:SetPoint("TOPLEFT", "Minimap", "TOPLEFT",
+  CTA_MinimapIcon:SetPoint("TOPLEFT", "Minimap", "TOPLEFT",
   55 -((CTA_SavedVariables.MinimapRadiusOffset) * cos(CTA_SavedVariables.MinimapArcOffset)),
   ((CTA_SavedVariables.MinimapRadiusOffset) * sin(CTA_SavedVariables.MinimapArcOffset)) -55
   );
-  local icon_x, icon_y = CTA_MinimapButton:GetCenter()
+  local icon_x, icon_y = CTA_MinimapIcon:GetCenter()
   local screen_x, screen_y = GetScreenWidth(), GetScreenHeight()
   local quadrant
   if icon_y > screen_y/2 then
@@ -3320,12 +3267,7 @@ function CTA_UpdateMinimapIcon()
     quadrant = quadrant .. ""
   end
   local point, to, x, y = unpack(quadrants[quadrant])
-  CTA_MinimapMessageFrame:SetPoint(point, CTA_MinimapButton, to, x, y)
-  --[[CTA_MinimapMessageFrame:SetPoint( "TOPRIGHT", "Minimap", "TOPRIGHT",
-		( 0 - ( ( CTA_SavedVariables.MinimapMsgRadiusOffset ) * cos( CTA_SavedVariables.MinimapMsgArcOffset ) ) ) - 55,
-		( ( CTA_SavedVariables.MinimapMsgRadiusOffset ) * sin (CTA_SavedVariables.MinimapMsgArcOffset ) ) - 55
-	);]]
-
+  CTA_MinimapMessageFrame:SetPoint(point, CTA_MinimapIcon, to, x, y)
 end
 
 
@@ -3865,7 +3807,7 @@ function CTA_ShowLFGFrame()
     CTA_LFGFrame:Hide();
   else
     CTA_CannotLFGFrame:Hide();
-    CTA_LGMPrefixLabel:SetText("Level " .. UnitLevel(CTA_PLAYER) .. " " .. UnitClass(CTA_PLAYER) .. " " .. CTA_LFG .. " ");
+    CTA_LGMPrefixLabel:SetText("L" .. UnitLevel(CTA_PLAYER) .. " " .. UnitClass(CTA_PLAYER) .. " " .. CTA_LFG .. " ");
     CTA_LFGFrame:Show();
   end
 end
